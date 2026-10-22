@@ -474,7 +474,8 @@ html[dir="rtl"] .select{background-position:left var(--s-3) center}
 .toast__close{margin-inline-start:auto;color:inherit;opacity:.7;padding:0 4px;font-size:16px;line-height:1}
 .toast__close:hover{opacity:1}
 @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
-html[dir="rtl"] @keyframes toastIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes toastInRtl{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+html[dir="rtl"] .toast{animation-name:toastInRtl}
 
 /* ─────────── MODAL ─────────── */
 .modal-back{
@@ -1082,8 +1083,7 @@ const Storage = (() => {
         return true;
       } catch (err) {
         if (err && (err.name === 'QuotaExceededError' || err.code === 22)) {
-          console.warn('NexSec: تخزين ممتلئ — تم تجاهل الحفظ.');
-          return false;
+          console.warn('NexSec: التخزين المحلي ممتلئ — سيُحفظ التغيير مؤقتاً في الذاكرة.');
         }
       }
     }
